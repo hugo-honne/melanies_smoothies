@@ -31,12 +31,11 @@ if ingredients_list:
     		fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
 		fv_df =st.dataframe(data=fruityvice_response.json(), use_container_width=True)
 
-    my_insert_stmt = """ insert into smoothies.public.orders values 
-             (smoothies.public.order_seq.nextval, false,'""" + ingredients_string + """','"""+name_on_order+ """', current_timestamp)"""
+		my_insert_stmt = """ insert into smoothies.public.orders values 
+		(smoothies.public.order_seq.nextval, false,'""" + ingredients_string + """','"""+name_on_order+ """', current_timestamp)"""
 
-    #st.write(my_insert_stmt)
-    #st.stop()
-    time_to_insert = st.button('Submit Order')
+    
+    		time_to_insert = st.button('Submit Order')
     
     if time_to_insert:
         session.sql(my_insert_stmt).collect()
